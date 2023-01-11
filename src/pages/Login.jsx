@@ -2,38 +2,51 @@ import React, { useState } from "react";
 import styles from "./login.module.css";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { login } from "../redux/auth/action";
+import { LOGINSUCCESS } from "../redux/auth/action.types";
 
 export const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   let [loginData, setLogin] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const handleChange = (e) => {
     let { name, value } = e.target;
     setLogin({ ...loginData, [name]: value });
   };
-  const handleSubmit = () => {
-    console.log(loginData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(loginData)).then((res) => {
+      if (res.status === LOGINSUCCESS) {
+        alert("Logedin Successfully...");
+        setLogin({});
+        navigate("/");
+      } else {
+        alert("Wrong Creadential. Please Enter correct one !");
+      }
+    });
 
-   
+    console.log(loginData);
   };
   return (
     <div className={styles.main}>
-      <div className={styles.box}>
+      <form className={styles.box} onSubmit={(e) => handleSubmit(e)}>
         <p>Welcome !</p>
         <div>
           <h1 className={styles.heading}>Login to</h1>
           <p>Ideotic-Doggo_API</p>
         </div>
         <div className={styles.inputdiv}>
-          <label>User name</label>
+          <label>Email</label>
           <input
+            required
             className={styles.input}
             type="text"
-            placeholder="Enter your user name "
-            name="username"
-            value={loginData?.username || ""}
+            placeholder="Enter your Email"
+            name="email"
+            value={loginData?.email || ""}
             onChange={(e) => handleChange(e)}
           />
         </div>
@@ -56,7 +69,8 @@ export const Login = () => {
             </div>
           </div>
         </div>
-
+       
+       {/* Remember me and Forget Passsword is not implimented */}
         <div className={styles.rememberme}>
           <div>
             <input type="checkbox" />
@@ -66,10 +80,11 @@ export const Login = () => {
           <div>Forget Password ?</div>
         </div>
 
-        <button className={styles.button} onClick={handleSubmit}>
-          {" "}
-          Login
-        </button>
+        <input
+          type={"submit"}
+          className={styles.button}
+          value={"Login"}
+        ></input>
 
         <div className={styles.redirect}>
           don't have any accout?{" "}
@@ -77,7 +92,7 @@ export const Login = () => {
             <span> Register</span>
           </Link>{" "}
         </div>
-      </div>
+      </form>
     </div>
   );
 };

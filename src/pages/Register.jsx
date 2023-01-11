@@ -2,26 +2,40 @@ import React,{useState} from "react";
 import styles from "./register.module.css";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../redux/auth/action";
+import { REGISTERSUCCESS } from "../redux/auth/action.types";
 
 export const Register = () => {
     const navigate = useNavigate();
-    let [registerData, setREgisterData] = useState({});
+    let [registerData, setRegisterData] = useState({});
     const [showPassword, setShowPassword] = useState(false);
-   
+    const dispatch=useDispatch();
     const handleChange = (e) => {
       let { name, value } = e.target;
-      setREgisterData({ ...registerData, [name]: value });
+      setRegisterData({ ...registerData, [name]: value });
     };
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
       console.log(registerData);
- 
+       dispatch(register(registerData)).then((res)=>{
+          if(res.status===REGISTERSUCCESS){
+            alert("REgistered Successfully..");
+            navigate("/login");
+            setRegisterData({});
+          }else{
+
+            alert(res.message)
+          }
+       })
+      
     };
     return (
       <div className={styles.main}>
-        <div className={styles.box}>
+        <form className={styles.box}  onSubmit={(e)=>handleSubmit(e)}>
           <p>Welcome !</p>
           <div>
-            <h1 className={styles.heading}>Login to</h1>
+            <h1 className={styles.heading}>Register to</h1>
             <p>Ideotic-Doggo_API</p>
           </div>
           <div className={styles.inputdiv}>
@@ -30,8 +44,9 @@ export const Register = () => {
               className={styles.input}
               type="text"
               placeholder="Enter your user name "
-              name="username"
-              value={registerData?.username || ""}
+              name="name"
+              required
+              value={registerData?.name || ""}
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -39,6 +54,7 @@ export const Register = () => {
           <div className={styles.inputdiv}>
             <label>Email</label>
             <input
+            required
               className={styles.input}
               type="email"
               placeholder="Enter your Email "
@@ -53,6 +69,7 @@ export const Register = () => {
   
             <div className={styles.password}>
               <input
+              required
                 className={styles.input}
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
@@ -68,28 +85,21 @@ export const Register = () => {
           <div className={styles.inputdiv}>
             <label>Mobile</label>
             <input
+            required
               className={styles.input}
               type="number"
+              maxLength={10}
               placeholder="Enter your Mobile no "
               name="phone"
               value={registerData?.phone || ""}
               onChange={(e) => handleChange(e)}
             />
           </div>
+
   
-          <div className={styles.rememberme}>
-            <div>
-              <input type="checkbox" />
-              <label>Remenber me</label>
-            </div>
-  
-            <div>Forget Password ?</div>
-          </div>
-  
-          <button className={styles.button} onClick={handleSubmit}>
-            {" "}
-            Login
-          </button>
+          <input type="submit" className={styles.button} value={"Register"}>
+            
+          </input>
   
           <div className={styles.redirect}>
             Already have an accout?{" "}
@@ -97,7 +107,7 @@ export const Register = () => {
               <span> Login</span>
             </Link>{" "}
           </div>
-        </div>
+        </form>
       </div>
     );
 };

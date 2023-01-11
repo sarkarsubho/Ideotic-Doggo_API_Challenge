@@ -14,12 +14,13 @@ export const Navbar = () => {
       </div>
 
       {isAuth ? (
+        <>
         <div className={styles.profile}>
           <div className={styles.account}>
             <div>
               <IoPersonSharp fontSize={"21px"} />
             </div>
-            <div>Profile Name</div>
+            <div>Subhankar sarkar</div>
           </div>
 
           <div className={styles.iconbutton}>
@@ -27,6 +28,15 @@ export const Navbar = () => {
             <FaPowerOff color="red" fontSize={"21px"}  />
           </div>
         </div>
+        {/* mobile nav Profile  */}
+        
+        <div className={styles.mobileProfile}>
+
+
+          
+          </div> 
+        
+        </>
       ) : (
         <div className={styles.iconbutton}>
           <button className={styles.button}>Login</button>
