@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./login.module.css";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/auth/action";
 import { LOGINSUCCESS } from "../redux/auth/action.types";
