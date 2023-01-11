@@ -1,10 +1,10 @@
 .nav {
   /* padding: 15px; */
   height: 9vh;
-  
+
   padding: 10px 35px;
   box-sizing: border-box;
-  background-color:black;
+  background-color: black;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -12,26 +12,29 @@
   position: sticky;
   top: 0;
 }
-.heading{
+.heading {
   font-size: 36px;
+}
+.heading > a {
+  color: white;
+  text-decoration: none;
 }
 .profile {
   display: flex;
   gap: 20px;
 }
-.account{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-size: 15px;
-    font-weight: 600;
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
 }
-.iconbutton{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+.iconbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .button {
   padding: 10px 3px 10px 10px;
@@ -44,26 +47,26 @@
   text-align: center;
   border: none;
 }
-.mobileProfile{
+.mobileProfile {
   display: none;
 }
 
-@media only screen and (max-width:420px) {
-  .nav{
+@media only screen and (max-width: 420px) {
+  .nav {
     padding: 10px;
   }
-  .heading{
+  .heading {
     font-size: 16px;
     margin: 0;
   }
-  .button{
+  .button {
     font-size: 15px;
   }
-  .mobileProfile{
+  .mobileProfile {
     display: block;
     padding-right: 10px;
   }
-  .profile{
+  .profile {
     display: none;
   }
 }
