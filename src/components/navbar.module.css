@@ -1,6 +1,7 @@
 .nav {
   /* padding: 15px; */
   height: 9vh;
+  
   padding: 10px 35px;
   box-sizing: border-box;
   background-color:black;
@@ -16,7 +17,7 @@
 }
 .profile {
   display: flex;
-  gap: 0px;
+  gap: 20px;
 }
 .account{
     display: flex;
@@ -43,6 +44,9 @@
   text-align: center;
   border: none;
 }
+.mobileProfile{
+  display: none;
+}
 
 @media only screen and (max-width:420px) {
   .nav{
@@ -54,5 +58,12 @@
   }
   .button{
     font-size: 15px;
+  }
+  .mobileProfile{
+    display: block;
+    padding-right: 10px;
+  }
+  .profile{
+    display: none;
   }
 }

@@ -31,10 +31,10 @@ export const Navbar = () => {
         {/* mobile nav Profile  */}
         
         <div className={styles.mobileProfile}>
-
-
+        
+        <IoPersonSharp fontSize={"26px"} />
           
-          </div> 
+        </div> 
         
         </>
       ) : (

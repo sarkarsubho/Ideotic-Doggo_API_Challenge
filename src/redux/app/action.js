@@ -4,9 +4,10 @@ export const Getdata = (payload) => (dispatch) => {
   dispatch({ type: types.GETDATAREQUESTE });
 
   axios
-    .get("")
+    .get("https://dog.ceo/api/breeds/list/all")
     .then((res) => {
-      dispatch({ type: types.GETDATASUCCESS, payload: res.data });
+      console.log(res.data)
+      dispatch({ type: types.GETDATASUCCESS, payload: res.data.message });
     })
     .catch((er) => {
       dispatch({ type: types.GETDATAERROR });
