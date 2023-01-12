@@ -28,6 +28,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Website view
 
+## Lighthouse Scores
+
+### #mobile view
+<img src="https://miro.medium.com/max/720/1*uWUZWCrgTNTMiSJKUJ15aA.webp">
+
+### #Desktop view
+<img src="https://miro.medium.com/max/720/1*TlVMBkUagEZOH-wVLvX4Rg.webp">
+
+
 ## Register Page
 - make sure fill all the filds else registration not be done.
 
@@ -50,7 +59,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - can view all the breeds and their sub-breeds on clicking on breed cart redirect o details page.
 
-- in navbar can view the loged users name and the logout button 
+- in navbar can view the loged users name and the logout button .
+- in mobile view only can see the first letter of first name and last name.
 
 - logo txt is attached to home routes
 
