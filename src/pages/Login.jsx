@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import styles from "./login.module.css";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/auth/action";
 import { LOGINSUCCESS } from "../redux/auth/action.types";
+import { Loader } from "../components/Loader";
 
 export const Login = () => {
+  const { isLoading } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let [loginData, setLogin] = useState({});
@@ -31,68 +33,72 @@ export const Login = () => {
     console.log(loginData);
   };
   return (
-    <div className={styles.main}>
-      <form className={styles.box} onSubmit={(e) => handleSubmit(e)}>
-        <p>Welcome !</p>
-        <div>
-          <h1 className={styles.heading}>Login to</h1>
-          <p>Ideotic-Doggo_API</p>
-        </div>
-        <div className={styles.inputdiv}>
-          <label>Email</label>
-          <input
-            required
-            className={styles.input}
-            type="text"
-            placeholder="Enter your Email"
-            name="email"
-            value={loginData?.email || ""}
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
+    <>
+      {isLoading && <Loader message={"Cheacking Login Data..."}></Loader>}
 
-        <div className={styles.inputdiv}>
-          <label>Password</label>
+      <div className={styles.main}>
+        <form className={styles.box} onSubmit={(e) => handleSubmit(e)}>
+          <p>Welcome !</p>
+          <div>
+            <h1 className={styles.heading}>Login to</h1>
+            <p>Ideotic-Doggo_API</p>
+          </div>
 
-          <div className={styles.password}>
+          <div className={styles.inputdiv}>
+            <label>Email</label>
             <input
               required
               className={styles.input}
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              name="password"
-              value={loginData?.password || ""}
+              type="email"
+              placeholder="Enter your Email"
+              name="email"
+              value={loginData?.email || ""}
               onChange={(e) => handleChange(e)}
             />
-            <div onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <ImEyeBlocked /> : <ImEye />}
+          </div>
+
+          <div className={styles.inputdiv}>
+            <label>Password</label>
+            <div className={styles.password}>
+              <input
+                required
+                className={styles.input}
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                name="password"
+                value={loginData?.password || ""}
+                onChange={(e) => handleChange(e)}
+              />
+              <div onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? <ImEyeBlocked /> : <ImEye />}
+              </div>
             </div>
           </div>
-        </div>
-       
-       {/* Remember me and Forget Passsword is not implimented */}
-        <div className={styles.rememberme}>
-          <div>
-            <input type="checkbox" />
-            <label>Remenber me</label>
+
+          {/* Remember me and Forget Passsword is not implimented */}
+          <div className={styles.rememberme}>
+            <div>
+              <input type="checkbox" />
+              <label>Remenber me</label>
+            </div>
+
+            <div>Forget Password ?</div>
           </div>
 
-          <div>Forget Password ?</div>
-        </div>
+          <input
+            type={"submit"}
+            className={styles.button}
+            value={"Login"}
+          ></input>
 
-        <input
-          type={"submit"}
-          className={styles.button}
-          value={"Login"}
-        ></input>
-
-        <div className={styles.redirect}>
-          don't have any accout?{" "}
-          <Link to={"/register"}>
-            <span> Register</span>
-          </Link>{" "}
-        </div>
-      </form>
-    </div>
+          <div className={styles.redirect}>
+            don't have any accout?{" "}
+            <Link to={"/register"}>
+              <span> Register</span>
+            </Link>{" "}
+          </div>
+        </form>
+      </div>
+    </>
   );
 };

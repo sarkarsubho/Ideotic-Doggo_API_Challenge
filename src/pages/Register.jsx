@@ -1,12 +1,14 @@
 import React,{useState} from "react";
 import styles from "./register.module.css";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/auth/action";
 import { REGISTERSUCCESS } from "../redux/auth/action.types";
+import { Loader } from "../components/Loader";
 
 export const Register = () => {
+  const { isLoading } = useSelector((store) => store.auth);
     const navigate = useNavigate();
     let [registerData, setRegisterData] = useState({});
     const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +22,7 @@ export const Register = () => {
       console.log(registerData);
        dispatch(register(registerData)).then((res)=>{
           if(res.status===REGISTERSUCCESS){
-            alert("REgistered Successfully..");
+            alert("Registered Successfully..");
             navigate("/login");
             setRegisterData({});
           }else{
@@ -31,6 +33,8 @@ export const Register = () => {
       
     };
     return (
+      <>
+      {isLoading && <Loader message={"Cheacking Register details..."}></Loader>}
       <div className={styles.main}>
         <form className={styles.box}  onSubmit={(e)=>handleSubmit(e)}>
           <p>Welcome !</p>
@@ -109,5 +113,6 @@ export const Register = () => {
           </div>
         </form>
       </div>
+       </>
     );
 };

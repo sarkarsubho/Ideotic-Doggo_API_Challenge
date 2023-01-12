@@ -2,13 +2,16 @@ import axios from "axios";
 import * as types from "./action.types";
 
 export const register = (payload) => (dispatch) => {
+  dispatch({ type: types.REGISTERREQUEST });
   return axios
     .post("https://rich-erin-moth-ring.cyclic.app/register", payload)
     .then((res) => {
+      dispatch({ type: types.REGISTERSUCCESS });
       console.log(res.data);
       return { status: types.REGISTERSUCCESS };
     })
     .catch((er) => {
+      dispatch({ type: types.REGISTERREJECTED });
       console.log("register Error from FE", er.response.data);
       return {
         status: types.REGISTERREJECTED,

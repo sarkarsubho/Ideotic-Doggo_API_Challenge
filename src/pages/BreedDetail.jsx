@@ -24,7 +24,7 @@ export const BreedDetail = () => {
     <div className={styles.main}>
       <h2>Category Details</h2>
       <div className={styles.box}>
-        <img src={image} alt="" />
+        <img src={image} alt="Breed Image" />
         <h2>Breed Name : {params.breed}</h2>
       </div>
     </div>

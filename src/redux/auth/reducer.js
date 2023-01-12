@@ -1,4 +1,4 @@
-import { loadData, saveData ,removeData} from "../../utils/localStorage";
+import { loadData, saveData, removeData } from "../../utils/localStorage";
 import * as types from "./action.types";
 const initState = {
   isLoading: false,
@@ -10,6 +10,15 @@ const initState = {
 
 export const authReducer = (state = initState, { type, payload }) => {
   switch (type) {
+    case types.REGISTERREQUEST:
+      return { ...state, isLoading: true, isError: false };
+
+    case types.REGISTERSUCCESS:
+      return { ...state, isLoading: false, isError: false };
+
+    case types.REGISTERREJECTED:
+      return { ...state, isLoading: false, isError: true };
+
     case types.LOGINREQUEST:
       return { ...state, isLoading: true, isError: false };
 
@@ -26,11 +35,11 @@ export const authReducer = (state = initState, { type, payload }) => {
       };
     case types.LOGINREJECTED:
       return { ...state, isLoading: false, isError: true };
-    
+
     case types.LOGOUT:
       removeData("token");
-      removeData("user")
-      return {...state,isAuth:false,token:"",user:{}}
+      removeData("user");
+      return { ...state, isAuth: false, token: "", user: {} };
     default:
       return state;
   }
