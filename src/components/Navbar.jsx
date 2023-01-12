@@ -24,6 +24,8 @@ export const Navbar = () => {
         </h1>
       </div>
 
+      {/* checking if isAuth is true then show  the profile details otherwise the login Button */}
+
       {isAuth ? (
         <>
           <div className={styles.profile}>
@@ -39,7 +41,7 @@ export const Navbar = () => {
               <FaPowerOff color="red" fontSize={"21px"} />
             </div>
           </div>
-          {/* mobile nav Profile  */}
+          {/* mobile nav Profile only show when screen is less than equel 420px */}
 
           <div className={styles.mobileProfile}>
             <div className={styles.mobileProfileName}>

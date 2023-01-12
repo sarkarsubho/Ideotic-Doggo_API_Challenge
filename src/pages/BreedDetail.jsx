@@ -9,6 +9,8 @@ export const BreedDetail = () => {
   const [image, setImage] = useState("");
 
   const getImage = () => {
+    // getting the breed type from params as it is passing from the Link by react-router-dom
+    // by the breed name sarching particuler breed image frm the api.
     axios
       .get(`https://dog.ceo/api/breed/${params.breed}/images/random`)
       .then((res) => {

@@ -1,6 +1,6 @@
 import * as types from "./action.types";
 import axios from "axios";
-export const Getdata = (payload) => (dispatch) => {
+export const Getdata = () => (dispatch) => {
   dispatch({ type: types.GETDATAREQUESTE });
 
   axios

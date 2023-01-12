@@ -1,6 +1,69 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## techStack
+
+
+# FrontEnd
+
+### #freamworks
+
+- react
+- react router dom
+
+### #UI
+- react Icons
+- module css
+
+### #state management
+
+- redux
+- react-redux
+
+### #async operations
+
+- axios
+- redux-thunk
+
+
+## Website view
+
+## Register Page
+- make sure fill all the filds else registration not be done.
+
+- after successful registration redirect to login page 
+
+<img src="https://miro.medium.com/max/720/1*bS-DwcoZvXZGGEDTmtNqKg.webp">
+<img src="https://miro.medium.com/max/640/1*YwIh6TcE8CSWqbvVaAbUCw.webp">
+
+## Login Page
+
+- make sure fill all the filds else login not be done.
+
+- after successful login redirect to home (AllBreeds) page
+
+<img src="https://miro.medium.com/max/720/1*EE6B6hGmXntWXGD5-IlB0Q.webp">
+
+<img src="https://miro.medium.com/max/640/1*57qyi6dSxxxJLSTFD3ho1A.webp">
+
+## Home Page
+
+- can view all the breeds and their sub-breeds on clicking on breed cart redirect o details page.
+
+- in navbar can view the loged users name and the logout button 
+
+- logo txt is attached to home routes
+
+<img src="https://miro.medium.com/max/1400/1*UdaGIO75AmOvliDgT3ZZyQ.webp">
+<img src="https://miro.medium.com/max/640/1*30nsJL6Urlaacvrkqlhdew.webp">
+
+## Details Page
+
+- can view the particular dog details with image.
+
+<img src="https://miro.medium.com/max/720/1*35Tuksh9vVrT1H1IigZ-Eg.webp">
+<img src="https://miro.medium.com/max/640/1*Fy1mmFuFFGnobABqD1uCbw.webp">
+
 
 ## Available Scripts
 

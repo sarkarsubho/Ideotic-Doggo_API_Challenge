@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styles from "./register.module.css";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,42 +9,53 @@ import { Loader } from "../components/Loader";
 
 export const Register = () => {
   const { isLoading } = useSelector((store) => store.auth);
-    const navigate = useNavigate();
-    let [registerData, setRegisterData] = useState({});
-    const [showPassword, setShowPassword] = useState(false);
-    const dispatch=useDispatch();
-    const handleChange = (e) => {
-      let { name, value } = e.target;
-      setRegisterData({ ...registerData, [name]: value });
-    };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-      console.log(registerData);
-       dispatch(register(registerData)).then((res)=>{
-          if(res.status===REGISTERSUCCESS){
-            alert("Registered Successfully..");
-            navigate("/login");
-            setRegisterData({});
-          }else{
+  const navigate = useNavigate();
+  let [registerData, setRegisterData] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
-            alert(res.message)
-          }
-       })
-      
-    };
-    return (
-      <>
+// setting values onChange Event. dynamic name as key and value as value ;
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setRegisterData({ ...registerData, [name]: value });
+  };
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(registerData);
+    // dispatching data to register function and if is successsfully register then redirecting
+    dispatch(register(registerData)).then((res) => {
+      if (res.status === REGISTERSUCCESS) {
+        alert("Registered Successfully..");
+        navigate("/login");
+        setRegisterData({});
+      } else {
+        alert(res.message);
+      }
+    });
+  };
+
+  return (
+    <>
+     
+    {/* showing loader only when isLoading state is true */}
       {isLoading && <Loader message={"Cheacking Register details..."}></Loader>}
       <div className={styles.main}>
-        <form className={styles.box}  onSubmit={(e)=>handleSubmit(e)}>
+        <form className={styles.box} onSubmit={(e) => handleSubmit(e)}>
+          {/* Form header */}
           <p>Welcome !</p>
           <div>
             <h1 className={styles.heading}>Register to</h1>
             <p>Ideotic-Doggo_API</p>
           </div>
+
+          {/* Form Inputs */}
+
           <div className={styles.inputdiv}>
-            <label>User name</label>
+            <label for="name">User name</label>
             <input
+              id="name"
               className={styles.input}
               type="text"
               placeholder="Enter your user name "
@@ -56,9 +67,10 @@ export const Register = () => {
           </div>
 
           <div className={styles.inputdiv}>
-            <label>Email</label>
+            <label for="email">Email</label>
             <input
-            required
+              id="email"
+              required
               className={styles.input}
               type="email"
               placeholder="Enter your Email "
@@ -67,13 +79,13 @@ export const Register = () => {
               onChange={(e) => handleChange(e)}
             />
           </div>
-  
+
           <div className={styles.inputdiv}>
-            <label>Password</label>
-  
+            <label for="password">Password</label>
             <div className={styles.password}>
               <input
-              required
+                id="password"
+                required
                 className={styles.input}
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
@@ -86,10 +98,12 @@ export const Register = () => {
               </div>
             </div>
           </div>
+
           <div className={styles.inputdiv}>
-            <label>Mobile</label>
+            <label for="phone">Mobile</label>
             <input
-            required
+              id="phone"
+              required
               className={styles.input}
               type="number"
               maxLength={10}
@@ -100,11 +114,14 @@ export const Register = () => {
             />
           </div>
 
-  
-          <input type="submit" className={styles.button} value={"Register"}>
-            
-          </input>
-  
+          <input
+            type="submit"
+            className={styles.button}
+            value={"Register"}
+          ></input>
+
+          {/* redirecting */}
+
           <div className={styles.redirect}>
             Already have an accout?{" "}
             <Link to={"/login"}>
@@ -113,6 +130,6 @@ export const Register = () => {
           </div>
         </form>
       </div>
-       </>
-    );
+    </>
+  );
 };

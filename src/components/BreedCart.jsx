@@ -9,6 +9,8 @@ export const BreedCart = ({ breed, subBreeds }) => {
         <h2>Breed Name:- {breed}</h2>
         <div>
           <h3>SubBreds :-</h3>
+
+          {/* Maping all the sub-breeds if not there show default h4 text */}
           <div className={styles.subBreed}>
             {subBreeds.length > 0 ? (
               subBreeds.map((e, i) => (

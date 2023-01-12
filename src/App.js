@@ -11,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <Navbar></Navbar>
+      {/* all the routes among them which are covered by Requiredauth are the Protected Routes. */}
       <Routes>
         <Route
           path={"/"}

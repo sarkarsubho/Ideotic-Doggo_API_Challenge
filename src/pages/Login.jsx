@@ -15,11 +15,15 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
+    // setting values dynamic name as key and value as value;
     let { name, value } = e.target;
     setLogin({ ...loginData, [name]: value });
   };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     dispatch(login(loginData)).then((res) => {
       if (res.status === LOGINSUCCESS) {
         alert("Logedin Successfully...");
@@ -34,19 +38,23 @@ export const Login = () => {
   };
   return (
     <>
+    {/* showing loader only when isLoading state is true */}
       {isLoading && <Loader message={"Cheacking Login Data..."}></Loader>}
 
       <div className={styles.main}>
         <form className={styles.box} onSubmit={(e) => handleSubmit(e)}>
+          {/* form header */}
           <p>Welcome !</p>
           <div>
             <h1 className={styles.heading}>Login to</h1>
             <p>Ideotic-Doggo_API</p>
           </div>
-
+          
+          {/* form Inputs */}
           <div className={styles.inputdiv}>
-            <label>Email</label>
+            <label for="email">Email</label>
             <input
+              id="email"
               required
               className={styles.input}
               type="email"
@@ -58,9 +66,10 @@ export const Login = () => {
           </div>
 
           <div className={styles.inputdiv}>
-            <label>Password</label>
+            <label for="password">Password</label>
             <div className={styles.password}>
               <input
+                id="password"
                 required
                 className={styles.input}
                 type={showPassword ? "text" : "password"}
@@ -78,8 +87,8 @@ export const Login = () => {
           {/* Remember me and Forget Passsword is not implimented */}
           <div className={styles.rememberme}>
             <div>
-              <input type="checkbox" />
-              <label>Remenber me</label>
+              <input type="checkbox" id="checkbox" />
+              <label for="checkbox">Remenber me</label>
             </div>
 
             <div>Forget Password ?</div>
@@ -90,6 +99,8 @@ export const Login = () => {
             className={styles.button}
             value={"Login"}
           ></input>
+
+          {/* redirect */}
 
           <div className={styles.redirect}>
             don't have any accout?{" "}

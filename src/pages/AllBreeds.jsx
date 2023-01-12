@@ -5,13 +5,12 @@ import { BreedCart } from "../components/BreedCart";
 import styles from "./allBreeds.module.css";
 import { Loader } from "../components/Loader";
 
-
 export const AllBreeds = () => {
- 
-  const {breeds ,loading} = useSelector((store) => store.app);
+  const { breeds, loading } = useSelector((store) => store.app);
   const dispatch = useDispatch();
-
-  let  allBreeds= Object.keys(breeds);
+ 
+  // takinging all the breed name as a array for batter mapping  
+  let allBreeds = Object.keys(breeds);
 
   useEffect(() => {
     dispatch(Getdata());
@@ -19,15 +18,14 @@ export const AllBreeds = () => {
   return (
     <>
       {loading && <Loader message={"Loading Breeds Details..."}></Loader>}
-    <div className={styles.allBreeds}>
-      {allBreeds.map((e, i) => {
-        return (
-          
+      <div className={styles.allBreeds}>
+        {allBreeds.map((e, i) => {
+          return (
+            // breed is the key name from allBreeds array subBreeds is the value from the particuler breeds key
             <BreedCart key={i} breed={e} subBreeds={breeds[e]}></BreedCart>
-          
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
     </>
   );
 };
